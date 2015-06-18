@@ -4,17 +4,28 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     @IBOutlet weak var tableView: UITableView!
 
+    var selectedTask: Task?
+
+    // MARK: Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Todo List"
+
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "taskCell")
+        // Prevent empty cell being created after last cell
         tableView.tableFooterView = UIView(frame: CGRectZero)
-        tableView.rowHeight = 50.0
     }
 
-    // MARK: - Table view data source
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let editDescriptionVC = segue.destinationViewController as! EditTaskViewController
+
+        editDescriptionVC.taskToEdit = selectedTask
+    }
+
+    // MARK: UITableViewDataSource
 
     func numberOfSectionsInTableView(_tableView: UITableView) -> Int {
         return 1
@@ -33,7 +44,22 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
 
-    // MARK: - Table view delegate
+    // MARK: UITableViewDelegate
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+
+        selectedTask = TaskStore.sharedInstance.tasks[indexPath.row]
+
+        performSegueWithIdentifier("editTaskSegue", sender: self)
+    }
+
+    // MARK: Action handler
+
+    @IBAction func addClicked(sender: AnyObject) {
+        selectedTask = nil
+
+        performSegueWithIdentifier("editTaskSegue", sender: self)
+    }
 }
 
