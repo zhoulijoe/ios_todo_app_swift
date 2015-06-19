@@ -20,9 +20,12 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let editDescriptionVC = segue.destinationViewController as! EditTaskViewController
-
-        editDescriptionVC.taskToEdit = selectedTask
+        if let identifier = segue.identifier where identifier == "editTaskSegue" {
+            let navigationVC = segue.destinationViewController as! UINavigationController
+            let editDescriptionVC = navigationVC.topViewController as! EditTaskViewController
+            
+            editDescriptionVC.taskToEdit = selectedTask
+        }
     }
 
     // MARK: UITableViewDataSource
@@ -40,6 +43,11 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         let task = TaskStore.sharedInstance.tasks[indexPath.row]
 
         cell.textLabel?.text = task.description
+        if (task.complete) {
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryType.None
+        }
 
         return cell
     }
@@ -56,10 +64,18 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     // MARK: Action handler
 
-    @IBAction func addClicked(sender: AnyObject) {
-        selectedTask = nil
+    @IBAction func unwindToTasks(segue: UIStoryboardSegue) {
+        let editTaskVC = segue.sourceViewController as! EditTaskViewController
 
-        performSegueWithIdentifier("editTaskSegue", sender: self)
+        if let taskToEdit = editTaskVC.taskToEdit {
+            TaskStore.sharedInstance.updateTask(taskToEdit)
+        } else if let taskToAdd = editTaskVC.taskToAdd {
+            TaskStore.sharedInstance.addTask(taskToAdd)
+        } else {
+            return
+        }
+        
+        tableView.reloadData()
     }
 }
 

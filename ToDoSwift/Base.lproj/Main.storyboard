@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="taskCell" textLabel="Df8-ph-mqG" style="IBUITableViewCellStyleDefault" id="m1a-1F-DaQ">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" textLabel="Df8-ph-mqG" style="IBUITableViewCellStyleDefault" id="m1a-1F-DaQ">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1a-1F-DaQ" id="V15-aZ-U98">
@@ -49,13 +49,13 @@
                     <navigationItem key="navigationItem" id="T34-WM-ICd">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="jWx-JY-XJQ">
                             <connections>
-                                <action selector="addClicked:" destination="kS1-0n-B4K" id="Isi-yL-V2I"/>
+                                <segue destination="euI-Xd-ic6" kind="presentation" id="3Ia-89-N3F"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="vLo-Dr-3kC" id="mXZ-S2-1bo"/>
-                        <segue destination="Us8-Rr-x1o" kind="show" identifier="editTaskSegue" id="Rhm-K3-Lcm"/>
+                        <segue destination="euI-Xd-ic6" kind="show" identifier="editTaskSegue" id="Rhm-K3-Lcm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KsN-28-Pfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -71,7 +71,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ShZ-7L-vfV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OTK-C1-HQW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="cEq-GS-jM3">
@@ -112,13 +112,27 @@
                             <constraint firstItem="cEq-GS-jM3" firstAttribute="top" secondItem="OTK-C1-HQW" secondAttribute="top" id="wHG-9w-X6j"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Sk0-lK-8PI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="cXy-kh-YLB">
+                            <connections>
+                                <segue destination="Q5W-Zw-bUW" kind="unwind" unwindAction="unwindToTasks:" id="oeb-dg-XYQ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="zap-xt-rqG">
+                            <connections>
+                                <segue destination="Q5W-Zw-bUW" kind="unwind" unwindAction="unwindToTasks:" id="0mk-FF-Tga"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="saveButton" destination="zap-xt-rqG" id="3Wk-Sg-VOW"/>
                         <outlet property="tableView" destination="cEq-GS-jM3" id="i0W-nl-RKL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AEw-m8-uog" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Q5W-Zw-bUW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2255" y="315"/>
+            <point key="canvasLocation" x="3067" y="315"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GPa-os-oxy">
@@ -138,5 +152,26 @@
             </objects>
             <point key="canvasLocation" x="700" y="315"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="le5-1C-udH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="euI-Xd-ic6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cdD-Zu-5f2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Us8-Rr-x1o" kind="relationship" relationship="rootViewController" id="K0x-lG-jl7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7gC-QR-uew" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2255" y="315"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Rhm-K3-Lcm"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -1,9 +1,9 @@
 class Task {
-    let id: String
+    let id: String?
     var description: String?
     var complete: Bool
 
-    init(id: String, description: String) {
+    init(id: String?, description: String) {
         self.id = id
         self.description = description
         self.complete = false

@@ -11,8 +11,10 @@ import UIKit
 class EditTaskViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
 
     var taskToEdit: Task?
+    var taskToAdd: Task?
 
     // MARK: Lifecycle
 
@@ -21,6 +23,24 @@ class EditTaskViewController: UIViewController, UITableViewDataSource, UITableVi
 
         tableView.dataSource = self
         tableView.delegate = self
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (sender as? UIBarButtonItem != saveButton) {
+            return
+        }
+
+        let textCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! EditDescriptionCell
+
+        if (textCell.textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).isEmpty) {
+            return
+        }
+
+        if let task = taskToEdit {
+            task.description = textCell.textField.text
+        } else {
+            taskToAdd = Task(id: nil, description: textCell.textField.text)
+        }
     }
 
     // MARK: UITableViewDataSource
@@ -47,5 +67,4 @@ class EditTaskViewController: UIViewController, UITableViewDataSource, UITableVi
 
         return cell
     }
-    
 }

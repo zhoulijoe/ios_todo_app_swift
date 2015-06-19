@@ -15,4 +15,17 @@ class TaskStore {
             Task(id: "3", description: "Feed cat")
         ]
     }
+
+    func addTask(task: Task) {
+        tasks.append(task)
+    }
+
+    func updateTask(task: Task) {
+        for t in tasks {
+            if (t.id == task.id) {
+                t.description = task.description
+                t.complete = task.complete
+            }
+        }
+    }
 }
