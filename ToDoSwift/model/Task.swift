@@ -1,11 +1,18 @@
-class Task {
-    let id: String?
-    var description: String?
+class Task: Printable {
+    var id: String?
+    var summary: String?
     var complete: Bool
 
-    init(id: String?, description: String) {
+    init(id: String?, summary: String) {
         self.id = id
-        self.description = description
+        self.summary = summary
         self.complete = false
+    }
+
+    var description: String {
+        return "Printable {" +
+        "id: \(id), " +
+        "summary: \(summary), " +
+        "complete: \(complete)}"
     }
 }

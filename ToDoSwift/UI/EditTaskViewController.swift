@@ -14,7 +14,7 @@ class EditTaskViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var saveButton: UIBarButtonItem!
 
     var taskToEdit: Task?
-    var taskToAdd: Task?
+    var changed: Bool = false
 
     // MARK: Lifecycle
 
@@ -31,16 +31,19 @@ class EditTaskViewController: UIViewController, UITableViewDataSource, UITableVi
         }
 
         let textCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! EditDescriptionCell
+        let updatedDescription = textCell.textField.text
 
-        if (textCell.textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).isEmpty) {
+        if (updatedDescription.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).isEmpty) {
             return
         }
 
         if let task = taskToEdit {
-            task.description = textCell.textField.text
+            task.summary = updatedDescription
+            TaskStore.sharedInstance.updateTask(task)
         } else {
-            taskToAdd = Task(id: nil, description: textCell.textField.text)
+            TaskStore.sharedInstance.addTask(Task(id: nil, summary: updatedDescription))
         }
+        changed = true
     }
 
     // MARK: UITableViewDataSource
@@ -59,9 +62,9 @@ class EditTaskViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.textField.placeholder = "Enter description"
 
         if let task = taskToEdit {
-            if let description = task.description
-                where !description.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).isEmpty {
-                cell.textField.text = description
+            if let summary = task.summary
+                where !summary.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).isEmpty {
+                cell.textField.text = summary
             }
         }
 

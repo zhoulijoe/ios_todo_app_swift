@@ -42,7 +42,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! UITableViewCell
         let task = TaskStore.sharedInstance.tasks[indexPath.row]
 
-        cell.textLabel?.text = task.description
+        cell.textLabel?.text = task.summary
         if (task.complete) {
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
         } else {
@@ -67,15 +67,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBAction func unwindToTasks(segue: UIStoryboardSegue) {
         let editTaskVC = segue.sourceViewController as! EditTaskViewController
 
-        if let taskToEdit = editTaskVC.taskToEdit {
-            TaskStore.sharedInstance.updateTask(taskToEdit)
-        } else if let taskToAdd = editTaskVC.taskToAdd {
-            TaskStore.sharedInstance.addTask(taskToAdd)
-        } else {
-            return
+        if (editTaskVC.changed) {
+            tableView.reloadData()
         }
-        
-        tableView.reloadData()
     }
 }
 

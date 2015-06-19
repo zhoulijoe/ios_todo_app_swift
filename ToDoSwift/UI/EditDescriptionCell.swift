@@ -11,10 +11,4 @@ import UIKit
 class EditDescriptionCell: UITableViewCell {
 
     @IBOutlet weak var textField: UITextField!
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-
-//        textField.placeholder = "Enter description"
-    }
 }
