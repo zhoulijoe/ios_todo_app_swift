@@ -10,6 +10,8 @@
 		CB11083A1B328BCC00E6365B /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1108391B328BCC00E6365B /* TasksViewController.swift */; };
 		CB11083C1B328C4700E6365B /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB11083B1B328C4700E6365B /* EditTaskViewController.swift */; };
 		CB11083E1B328EAA00E6365B /* EditDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB11083D1B328EAA00E6365B /* EditDescriptionCell.swift */; };
+		CB1108401B3A63B600E6365B /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB11083F1B3A63B600E6365B /* TaskCell.swift */; };
+		CB1108421B3BB85D00E6365B /* RoundCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1108411B3BB85D00E6365B /* RoundCheckbox.swift */; };
 		CB33D82D1B2E0D4C001BCA5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB33D82C1B2E0D4C001BCA5E /* AppDelegate.swift */; };
 		CB33D8321B2E0D4C001BCA5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB33D8301B2E0D4C001BCA5E /* Main.storyboard */; };
 		CB33D8341B2E0D4C001BCA5E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB33D8331B2E0D4C001BCA5E /* Images.xcassets */; };
@@ -33,6 +35,8 @@
 		CB1108391B328BCC00E6365B /* TasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		CB11083B1B328C4700E6365B /* EditTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
 		CB11083D1B328EAA00E6365B /* EditDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDescriptionCell.swift; sourceTree = "<group>"; };
+		CB11083F1B3A63B600E6365B /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		CB1108411B3BB85D00E6365B /* RoundCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundCheckbox.swift; sourceTree = "<group>"; };
 		CB33D8271B2E0D4C001BCA5E /* ToDoSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB33D82B1B2E0D4C001BCA5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB33D82C1B2E0D4C001BCA5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 				CB1108391B328BCC00E6365B /* TasksViewController.swift */,
 				CB11083B1B328C4700E6365B /* EditTaskViewController.swift */,
 				CB11083D1B328EAA00E6365B /* EditDescriptionCell.swift */,
+				CB11083F1B3A63B600E6365B /* TaskCell.swift */,
+				CB1108411B3BB85D00E6365B /* RoundCheckbox.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -249,9 +255,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB11083E1B328EAA00E6365B /* EditDescriptionCell.swift in Sources */,
+				CB1108401B3A63B600E6365B /* TaskCell.swift in Sources */,
 				CB33D84F1B2E1452001BCA5E /* Task.swift in Sources */,
 				CB11083A1B328BCC00E6365B /* TasksViewController.swift in Sources */,
 				CB11083C1B328C4700E6365B /* EditTaskViewController.swift in Sources */,
+				CB1108421B3BB85D00E6365B /* RoundCheckbox.swift in Sources */,
 				CB33D8511B2E15F5001BCA5E /* TaskStore.swift in Sources */,
 				CB33D82D1B2E0D4C001BCA5E /* AppDelegate.swift in Sources */,
 			);

@@ -1,3 +1,5 @@
+import Foundation
+
 class TaskStore {
     static let sharedInstance = TaskStore()
 
@@ -35,6 +37,22 @@ class TaskStore {
         println("Adding task: \(task)")
 
         tasks.append(task)
+    }
+
+    func deleteTask(id: String) -> Int {
+        var taskIndex = NSNotFound
+
+        for var i = 0; i < tasks.count; i++ {
+            if (tasks[i].id == id) {
+                taskIndex = i
+            }
+        }
+
+        if (taskIndex != NSNotFound) {
+            tasks.removeAtIndex(taskIndex)
+        }
+
+        return taskIndex
     }
 
     func updateTask(task: Task) {

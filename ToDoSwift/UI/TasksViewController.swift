@@ -39,17 +39,27 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskCell
         let task = TaskStore.sharedInstance.tasks[indexPath.row]
 
-        cell.textLabel?.text = task.summary
-        if (task.complete) {
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryType.None
-        }
+        cell.task = task
 
         return cell
+    }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        let taskCell = tableView.cellForRowAtIndexPath(indexPath) as! TaskCell
+        let task = taskCell.task
+
+        if (editingStyle == .Delete) {
+            TaskStore.sharedInstance.deleteTask(task!.id!)
+
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
     }
 
     // MARK: UITableViewDelegate
@@ -60,6 +70,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         selectedTask = TaskStore.sharedInstance.tasks[indexPath.row]
 
         performSegueWithIdentifier("editTaskSegue", sender: self)
+    }
+
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.Delete
     }
 
     // MARK: Action handler
