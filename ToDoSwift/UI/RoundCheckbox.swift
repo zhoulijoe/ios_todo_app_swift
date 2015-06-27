@@ -13,13 +13,15 @@ class RoundCheckbox: UIButton {
     let checkedImage: UIImage
     let uncheckedImage: UIImage
 
+    // MARK: Lifecycle
+
     required init(coder aDecoder: NSCoder) {
         checkedImage = UIImage(named: "checkbox_checked")!
         uncheckedImage = UIImage(named: "checkbox_unchecked")!
 
         super.init(coder: aDecoder)
 
-        addTarget(self, action: "handleClick:", forControlEvents: UIControlEvents.TouchUpInside)
+       
     }
 
     var isChecked: Bool = false {
@@ -30,12 +32,6 @@ class RoundCheckbox: UIButton {
                 setImage(uncheckedImage, forState: UIControlState.Normal)
             }
         }
-    }
-
-    // MARK: Action handler
-
-    func handleClick(sender: RoundCheckbox) {
-        isChecked = !isChecked
     }
     
 }

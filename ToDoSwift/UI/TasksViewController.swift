@@ -42,7 +42,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskCell
         let task = TaskStore.sharedInstance.tasks[indexPath.row]
 
-        cell.task = task
+        cell.configureCell(task)
 
         return cell
     }

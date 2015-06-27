@@ -17,8 +17,6 @@ class TaskCell: UITableViewCell {
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
-        
     }
 
     var task: Task? {
@@ -28,5 +26,26 @@ class TaskCell: UITableViewCell {
                 checkbox.isChecked = task.complete
             }
         }
+    }
+
+    // MARK: Action handler
+
+    func handleCheckboxClick(checkbox: RoundCheckbox) {
+        checkbox.enabled = false
+
+        if let task = task {
+            task.complete = !task.complete
+            checkbox.isChecked = task.complete
+        }
+
+        checkbox.enabled = true
+    }
+
+    // MARK: Public API
+
+    func configureCell(task: Task) {
+        self.task = task
+
+        checkbox.addTarget(self, action: "handleCheckboxClick:", forControlEvents: UIControlEvents.TouchUpInside)
     }
 }
